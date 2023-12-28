@@ -8,6 +8,7 @@ El Script fue desarrollado para proteger las operaciones en futuros de Bybit, so
 - Descargar python [Aqui](https://www.python.org/ "Aqui")
 - Descargar y modificar el Archivo config.py, el archivo lo puedes modificar con sublime text, el cual puedes descargar [Aqui](https://www.sublimetext.com/ "Aqui")
 - Agrega la API KEY y la API SECRET
+- Para obtener tu API KEY y API SECRET debes ingresar [Aqui](https://partner.bybit.com/b/GafasTrading "Aqui")
 ```python
 API_KEY = ''
 API_SECRET = ''
