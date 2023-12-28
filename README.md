@@ -13,7 +13,7 @@ El Script fue desarrollado para proteger las operaciones en futuros de Bybit, so
 api_key = ''
 api_secret = ''
 ```
-- Antes de ejecutar el Script deberas instalar la libreria de Python de Binance `pip install python-binance`
+- Antes de ejecutar el Script deberas instalar la libreria de Python de BYBIT `pip install pybit`
 - Una vez guardado el archivo debes ejecutarlo desde una terminal de windows o de tu sistema operativo que uses con el siguiente comando.
 `python script.py`
 
