@@ -2,6 +2,8 @@
 
 El Script fue desarrollado para proteger las operaciones en futuros de Bybit, solo debes de poner la moneda que deseas operar donde ya tengas una posicion abierta, ejemplo (btc), y luego poner en monto maximo a perder en dolares, ejemplo (10)
 
+**NOTA: Este script es solo para los pares USDT**
+
 **Como usar el script**
 - Descargar python [Aqui](https://www.python.org/ "Aqui")
 - Descargar y modificar el Archivo config.py, el archivo lo puedes modificar con sublime text, el cual puedes descargar [Aqui](https://www.sublimetext.com/ "Aqui")
