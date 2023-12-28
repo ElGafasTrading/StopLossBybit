@@ -1,6 +1,7 @@
 import config
 import time
 from pybit.unified_trading import HTTP
+from decimal import Decimal, ROUND_DOWN, ROUND_FLOOR
 
 symbol = ''  # Puedes ajustar el símbolo según tus necesidades
 stop_loss = 0  # Valor en USDT
@@ -17,14 +18,20 @@ session = HTTP(
 def qty_step(symbol, price):
     step = session.get_instruments_info(category="linear", symbol=symbol)
     ticksize = float(step['result']['list'][0]['priceFilter']['tickSize'])
-    operacion = int(price / ticksize) * ticksize
-    result = operacion
+    scala_precio = int(step['result']['list'][0]['priceScale'])
+    precision = Decimal(f"{10**scala_precio}")
+    tickdec = Decimal(f"{ticksize}")
+    precio_final = (Decimal(f"{price}")*precision)/precision
+    precide = precio_final.quantize(Decimal(f"{1/precision}"),rounding=ROUND_FLOOR)
+    operaciondec = (precide / tickdec).quantize(Decimal('1'), rounding=ROUND_FLOOR) * tickdec
+    result = float(operaciondec)
 
     return result
 
 
 def establecer_stop_loss(symbol, price):
     price = qty_step(symbol, price)
+    print(price)
 
     # PONER ORDEN STOP LOSS
     order = session.set_trading_stop(
@@ -90,5 +97,8 @@ while True:
 
     except Exception as e:
         print(f"Error: {e}")
+        stop_loss = 0
+        estado = False
+        capital = 0
         time.sleep(5)
     time.sleep(1)
