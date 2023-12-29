@@ -70,7 +70,7 @@ while True:
                         establecer_stop_loss(symbol, stop_price)
                         capital = USDT
             else:
-                session.cancel_all_orders(category="linear", settleCoin="USDT")
+                session.cancel_all_orders(category="linear", symbol=symbol)
                 estado = False
                 capital = 0
 
