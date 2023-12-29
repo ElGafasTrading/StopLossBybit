@@ -51,7 +51,7 @@ while True:
     try:
         if estado:
             # Posiciones Abiertas
-            posiciones = session.get_positions(category="inverse", symbol=symbol)
+            posiciones = session.get_positions(category="linear", symbol=symbol)
             if float(posiciones['result']['list'][0]['size']) != 0:
                 precio_de_entrada = float(posiciones['result']['list'][0]['avgPrice'])
                 USDT = float(posiciones['result']['list'][0]['positionValue'])
@@ -83,7 +83,7 @@ while True:
                 if stop != '':
                     stop_loss = stop
                     # Posiciones Abiertas
-                    posiciones = session.get_positions(category="inverse", symbol=symbol)
+                    posiciones = session.get_positions(category="linear", symbol=symbol)
                     if float(posiciones['result']['list'][0]['size']) != 0:
                         print('POSICION ABIERTA EN ' + symbol)
                         estado = True
