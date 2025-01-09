@@ -38,8 +38,7 @@ def establecer_stop_loss(symbol, price):
         category="linear",
         symbol=symbol,
         stopLoss=price,
-        slTriggerB="IndexPrice",
-        slOrderType="Market",
+        slTriggerB="LastPrice",
         positionIdx=0,
     )
 
