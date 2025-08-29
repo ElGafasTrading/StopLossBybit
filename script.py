@@ -56,18 +56,31 @@ while True:
                 USDT = float(posiciones['result']['list'][0]['positionValue'])
                 porcentaje = (stop_loss * 100) / USDT
                 aumento = precio_de_entrada * (porcentaje / 100)
+                direccion = 'SHORT'
                 if posiciones['result']['list'][0]['side'] == 'Buy':
                     stop_price = precio_de_entrada - aumento
+                    direccion = 'LONG'
                 else:
                     stop_price = precio_de_entrada + aumento
-                if stop_price < 0:
+                if stop_price <= 0:
                     print('TU STOP LOSS NO ES POSIBLE, SE ENCUENTRA POR DEBAJO DE CERO')
                 else:
                     # poner stop loss
                     if USDT != capital:
                         print('MODIFICANDO STOP LOSS')
-                        establecer_stop_loss(symbol, stop_price)
-                        capital = USDT
+                        min_stop_loss = round(precio_de_entrada * 0.10, 8)
+                        if direccion == "LONG":
+                            if stop_price <= min_stop_loss:
+                                print("IMPOSIBLE MODIFICAR EL STOP LOSS")
+                            else:
+                                establecer_stop_loss(symbol, stop_price)
+                                capital = USDT
+                        if direccion == "SHORT":
+                            if stop_price >= min_stop_loss:
+                                print("IMPOSIBLE MODIFICAR EL STOP LOSS")
+                            else:
+                                establecer_stop_loss(symbol, stop_price)
+                                capital = USDT
             else:
                 session.cancel_all_orders(category="linear", symbol=symbol)
                 estado = False
