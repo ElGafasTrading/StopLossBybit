@@ -76,11 +76,8 @@ while True:
                                 establecer_stop_loss(symbol, stop_price)
                                 capital = USDT
                         if direccion == "SHORT":
-                            if stop_price >= min_stop_loss:
-                                print("IMPOSIBLE MODIFICAR EL STOP LOSS")
-                            else:
-                                establecer_stop_loss(symbol, stop_price)
-                                capital = USDT
+                            establecer_stop_loss(symbol, stop_price)
+                            capital = USDT
             else:
                 session.cancel_all_orders(category="linear", symbol=symbol)
                 estado = False
