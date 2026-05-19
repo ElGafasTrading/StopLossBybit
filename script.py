@@ -53,7 +53,7 @@ while True:
             posiciones = session.get_positions(category="linear", symbol=symbol)
             if float(posiciones['result']['list'][0]['size']) != 0:
                 precio_de_entrada = float(posiciones['result']['list'][0]['avgPrice'])
-                USDT = float(posiciones['result']['list'][0]['positionValue'])
+                USDT = float(posiciones['result']['list'][0]['size']) * precio_de_entrada
                 porcentaje = (stop_loss * 100) / USDT
                 aumento = precio_de_entrada * (porcentaje / 100)
                 direccion = 'SHORT'
@@ -68,7 +68,7 @@ while True:
                     # poner stop loss
                     if USDT != capital:
                         print('MODIFICANDO STOP LOSS')
-                        min_stop_loss = round(precio_de_entrada * 0.10, 8)
+                        min_stop_loss = round(precio_de_entrada * 0.8, 8)
                         if direccion == "LONG":
                             if stop_price <= min_stop_loss:
                                 print("IMPOSIBLE MODIFICAR EL STOP LOSS")
